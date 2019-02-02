@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @Service
 @Component
-public class ProcessImage {
+public class ProcessPicture {
 
     @Autowired
     private GrayImagesDAO grayImagesDAO;

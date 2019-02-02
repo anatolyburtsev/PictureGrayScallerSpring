@@ -24,7 +24,7 @@ public class ScheduledTasks {
    private DirectoryToMonitor directoryToMonitor;
 
    @Autowired
-   private ProcessImage processImage;
+   private ProcessPicture processPicture;
 
    @Scheduled(fixedRate = 3_000)
    public void refresh() throws IOException {
@@ -32,13 +32,13 @@ public class ScheduledTasks {
       processedFiles.addAll(notProcessed);
       notProcessed.forEach(System.out::println);
       for (Path path: notProcessed) {
-         processImage.convertToGrayAndSave(path);
+         processPicture.convertToGrayAndSave(path);
       }
    }
 
    @Scheduled(fixedRate = 7000)
    public void saveProcessedPictures() throws IOException, NotFoundImageWithId {
-      processImage.saveNewImages(savedAsBW, appConfig.getOutputDir());
+      processPicture.saveNewImages(savedAsBW, appConfig.getOutputDir());
    }
 
 

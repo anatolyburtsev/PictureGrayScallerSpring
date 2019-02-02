@@ -25,6 +25,9 @@ public class Picture {
     }
 
     public BufferedImage getGrayScaledImage() throws IOException, NotImageException {
+        if ( grayScaledImage != null) {
+            return grayScaledImage;
+        }
         BufferedImage image = loadImage();
         BufferedImage grayImage = new BufferedImage(image.getWidth(), image.getHeight(), TYPE_INT_RGB) ;
         for (int i = 0; i < image.getWidth(); i++) {
