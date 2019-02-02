@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.java.mentor.picgrayscaler.exceptions.NotFoundImageWithId;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,19 +21,14 @@ public class ScheduledTasks {
    private AppConfig appConfig;
 
    @Autowired
-   private Directory directory;
+   private DirectoryToMonitor directoryToMonitor;
 
    @Autowired
    private ProcessImage processImage;
 
-   @PostConstruct
-   public void init() {
-      directory.setPath(appConfig.getDirToMonitor());
-   }
-
    @Scheduled(fixedRate = 3_000)
    public void refresh() throws IOException {
-      List<Path> notProcessed = directory.getNotProcessedPathsAsList(processedFiles);
+      List<Path> notProcessed = directoryToMonitor.getNotProcessedPathsAsList(processedFiles);
       processedFiles.addAll(notProcessed);
       notProcessed.forEach(System.out::println);
       for (Path path: notProcessed) {

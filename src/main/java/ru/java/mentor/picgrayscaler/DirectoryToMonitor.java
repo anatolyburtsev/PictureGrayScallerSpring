@@ -1,7 +1,9 @@
 package ru.java.mentor.picgrayscaler;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,13 +11,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-public class Directory {
-    public Directory(String path) {
+public class DirectoryToMonitor {
+
+    @Autowired
+    private AppConfig appConfig;
+
+    @PostConstruct
+    public void init() {
+        this.setPath(appConfig.getDirToMonitor());
+    }
+
+    public DirectoryToMonitor(String path) {
         this.path = path;
     }
 
@@ -23,7 +36,7 @@ public class Directory {
         this.path = path;
     }
 
-    public Directory() {
+    public DirectoryToMonitor() {
     }
 
     private String path;

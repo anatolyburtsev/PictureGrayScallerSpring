@@ -1,7 +1,11 @@
 package ru.java.mentor.picgrayscaler.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.Buffer;

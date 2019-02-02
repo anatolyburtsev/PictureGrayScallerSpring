@@ -3,7 +3,7 @@ package ru.java.mentor.picgrayscaler;
 import ru.java.mentor.picgrayscaler.exceptions.NotImageException;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -43,10 +43,6 @@ public class Picture {
         }
         this.originalImage = img;
         return img;
-    }
-
-    public void saveImage() throws IOException, NotImageException {
-        ImageIO.write(this.getGrayScaledImage(), "bmp", new File(this.path + "_grayed.bmp"));
     }
 
     private int calcGrayRGBAtPoint(int x, int y){

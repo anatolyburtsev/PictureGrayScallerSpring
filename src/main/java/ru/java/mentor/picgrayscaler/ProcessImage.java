@@ -37,7 +37,6 @@ public class ProcessImage {
 
     @Async
     void convertToGrayAndSave(Path path) throws IOException {
-//        System.out.println("Start processing " + path.getFileName());
         Picture pic = new Picture(path);
         try {
             applicationEventPublisher.publishEvent(
@@ -53,12 +52,11 @@ public class ProcessImage {
         } catch (NotImageException e) {
             System.out.println("Found not picture! " + path.getFileName());
         }
-//        System.out.println("Picture processed: " + path.getFileName());
     }
 
     private byte[] imageToByte(BufferedImage image) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "bmp", baos);
+        ImageIO.write(image, "jpg", baos);
         baos.flush();
         byte[] imageInByte = baos.toByteArray();
         return imageInByte;
