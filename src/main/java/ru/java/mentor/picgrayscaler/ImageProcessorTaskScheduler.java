@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Service
-public class TaskScheduler {
+public class ImageProcessorTaskScheduler {
     private ArrayList<Path> processedFiles = new ArrayList<>();
     private ArrayList<Long> savedAsBW = new ArrayList<>();
 
